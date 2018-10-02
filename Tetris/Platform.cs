@@ -6,7 +6,7 @@ namespace Tetris
 {
     class Platform
     {
-        List<Dot> platform;
+        List<Dot> platform = new List<Dot>();
 
         public void AddToPlatform(List<Square> squares)
         {
