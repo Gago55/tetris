@@ -10,6 +10,7 @@ namespace Tetris
         public char sym = '■'; // 254 219
         public int y = 10;
         public bool created = false;
+        public bool moveable = true;
 
         //protected List<Dot> dots;
         public List<Square> squares;
@@ -30,7 +31,7 @@ namespace Tetris
             }
         }
 
-        public void Gravity(List<Square> squares , World world)
+        public void Gravity(List<Square> squares , World world , Platform platform)
         {
             Clear(squares);
             foreach (Square s in squares)
@@ -47,6 +48,8 @@ namespace Tetris
                     s.PosUp();
                 }
                 Draw(squares);
+                platform.AddToPlatform(squares);
+                moveable = false;
             }
         }
 
@@ -58,7 +61,7 @@ namespace Tetris
             }
         }
 
-        public void Move(List<Square> squares, ConsoleKey key, World world)
+        public void Move(List<Square> squares, ConsoleKey key, World world , Platform platform)
         {
             if (key == ConsoleKey.LeftArrow)
             {
@@ -116,6 +119,8 @@ namespace Tetris
                         s.PosUp();
                     }
                     Draw(squares);
+                    platform.AddToPlatform(squares);
+                    moveable = false;
                 }
             }
         }
