@@ -39,7 +39,7 @@ namespace Tetris
                 s.ChangePos(Direction.DOWN);
             }
 
-            if (!IsHit(squares, Direction.DOWN, world.walls[0]))
+            if (!IsHit(squares, Direction.DOWN, world.walls[0]) && !IsHit(squares, Direction.DOWN, platform.platform))
                 Draw(squares);
             else
             {
@@ -110,7 +110,7 @@ namespace Tetris
                     s.ChangePos(Direction.DOWN);
                 }
 
-                if (!IsHit(squares, Direction.DOWN, world.walls[0]))
+                if (!IsHit(squares, Direction.DOWN, world.walls[0]) && !IsHit(squares, Direction.DOWN, platform.platform))
                     Draw(squares);
                 else
                 {
