@@ -13,6 +13,7 @@ namespace Tetris
             Admin admin = new Admin();
             Blocks bigS = new BigS();
             World world = new World();
+            Platform platform = new Platform();
             
             //List<Dot> d = bigS.Righter(bigS.squares);
 
@@ -30,14 +31,16 @@ namespace Tetris
                     {
                         if(!bigS.created)
                         bigS.Create();
-                        bigS.Move(bigS.squares, key.Key, world);
+
+                        if(bigS.moveable)
+                        bigS.Move(bigS.squares, key.Key, world , platform);
                     }
                         
                 }
                 admin.ConsolePosShow(Console.CursorLeft , Console.CursorTop);
 
-                if (menu.IfStarted())
-                    bigS.Gravity(bigS.squares , world);
+                if (menu.IfStarted() && bigS.moveable)
+                    bigS.Gravity(bigS.squares , world , platform);
                 Thread.Sleep(300);
             }
 
