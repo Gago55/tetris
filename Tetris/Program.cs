@@ -29,19 +29,23 @@ namespace Tetris
 
                     if(menu.IfStarted())
                     {
-                        if(!actualBlock.created)
-                            actualBlock.Create();
 
-                        if(actualBlock.moveable)
+                        if(actualBlock.moveable && actualBlock.created)
                             actualBlock.Move(actualBlock.squares, key.Key, world , platform);
                     }
                         
                 }
                 admin.ConsolePosShow(Console.CursorLeft , Console.CursorTop);
+                if(menu.IfStarted())
+                if (!actualBlock.created)
+                    actualBlock.Create();
 
-                if (menu.IfStarted() && actualBlock.moveable)
+                if (menu.IfStarted() && actualBlock.moveable && actualBlock.created)
                     actualBlock.Gravity(actualBlock.squares , world , platform);
-                Thread.Sleep(300);
+                Thread.Sleep(100);
+
+                if (!actualBlock.moveable)
+                    actualBlock = game.RandomBlock();
             }
 
             
