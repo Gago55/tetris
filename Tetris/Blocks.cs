@@ -39,7 +39,7 @@ namespace Tetris
                 s.ChangePos(Direction.DOWN);
             }
 
-            if (!IsHit(squares, Direction.DOWN, world.walls[0]) && !IsHit(squares, Direction.DOWN, platform.platform))
+            if (!IsHit(squares, world.walls[0]) && !IsHit(squares, platform.platform))
                 Draw(squares);
             else
             {
@@ -71,7 +71,7 @@ namespace Tetris
                     s.ChangePos(Direction.LEFT);
                 }
 
-                if (!IsHit(squares, Direction.LEFT, world.walls[1]))
+                if (!IsHit(squares, world.walls[1]) && !IsHit(squares, platform .platform ))
                     Draw(squares);
                 else
                 {
@@ -91,7 +91,7 @@ namespace Tetris
                     s.ChangePos(Direction.RIGTH);
                 }
 
-                if (!IsHit(squares, Direction.RIGTH, world.walls[2]))
+                if (!IsHit(squares, world.walls[2]) && !IsHit(squares, platform.platform) )
                     Draw(squares);
                 else
                 {
@@ -110,7 +110,7 @@ namespace Tetris
                     s.ChangePos(Direction.DOWN);
                 }
 
-                if (!IsHit(squares, Direction.DOWN, world.walls[0]) && !IsHit(squares, Direction.DOWN, platform.platform))
+                if (!IsHit(squares, world.walls[0]) && !IsHit(squares, platform.platform))
                     Draw(squares);
                 else
                 {
@@ -125,17 +125,12 @@ namespace Tetris
             }
         }
 
-        public bool IsHit(List<Square> squares, Direction dir, List<Dot> wall)
+        public bool IsHit(List<Square> squares, List<Dot> wall)
         {
 
             List<Dot> dots;
-            if (dir == Direction.LEFT)
-                dots = Lefter(squares);
-            else if (dir == Direction.RIGTH)
-                dots = Righter(squares);
-            else
-                dots = Downer(squares);
-
+            dots = DotList(squares);
+            
             foreach (Dot d in dots)
             {
                 foreach (Dot _d in wall)
@@ -148,82 +143,17 @@ namespace Tetris
 
         }
 
-        public List<Dot> Downer(List<Square> squares)
+        public List<Dot> DotList(List<Square> squares)
         {
-            int maxY = 0;
-            List<Dot> downers = new List<Dot>();
+            List<Dot> downers = new List<Dot>();            
 
             foreach (Square s in squares)
-            {
                 foreach (Dot d in s.dots)
-                {
-                    if (d.y > maxY)
-                        maxY = d.y;
-                }
-            }
-
-            foreach (Square s in squares)
-            {
-                foreach (Dot d in s.dots)
-                {
-                    if (d.y == maxY)
-                        downers.Add(d);
-                }
-            }
-
+                     downers.Add(d);   
             return downers;
         }
-        public List<Dot> Lefter(List<Square> squares)
-        {
-            int minX = 500;
-            List<Dot> downers = new List<Dot>();
 
-            foreach (Square s in squares)
-            {
-                foreach (Dot d in s.dots)
-                {
-                    if (d.x < minX)
-                        minX = d.x;
-                }
-            }
-
-            foreach (Square s in squares)
-            {
-                foreach (Dot d in s.dots)
-                {
-                    if (d.x == minX
-)
-                        downers.Add(d);
-                }
-            }
-
-            return downers;
-        }
-        public List<Dot> Righter(List<Square> squares)
-        {
-            int maxX = 0;
-            List<Dot> downers = new List<Dot>();
-
-            foreach (Square s in squares)
-            {
-                foreach (Dot d in s.dots)
-                {
-                    if (d.x > maxX)
-                        maxX = d.x;
-                }
-            }
-
-            foreach (Square s in squares)
-            {
-                foreach (Dot d in s.dots)
-                {
-                    if (d.x == maxX)
-                        downers.Add(d);
-                }
-            }
-
-            return downers;
-        }
+        
 
         public virtual void Create()
         {
