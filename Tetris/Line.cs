@@ -6,7 +6,7 @@ namespace Tetris
 {
     class Line : Blocks
     {
-        int x = 26;
+        int x = 25;
 
 
         public override void Create()

@@ -6,7 +6,7 @@ namespace Tetris
 {
     class OppositeZ : Blocks
     {
-        int x = 28;
+        int x = 27;
 
         public override void Create()
         {
