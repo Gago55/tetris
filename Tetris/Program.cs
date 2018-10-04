@@ -11,11 +11,11 @@ namespace Tetris
             Window window = new Window(60, 50);
             Menu menu = new Menu();
             Admin admin = new Admin();
-            Blocks bigS = new BigS();
             World world = new World();
             Platform platform = new Platform();
-            
-            //List<Dot> d = bigS.Righter(bigS.squares);
+            Game game = new Game();
+
+            Blocks actualBlock = game.RandomBlock();
 
             while (true)
             {
@@ -29,19 +29,23 @@ namespace Tetris
 
                     if(menu.IfStarted())
                     {
-                        if(!bigS.created)
-                        bigS.Create();
 
-                        if(bigS.moveable)
-                        bigS.Move(bigS.squares, key.Key, world , platform);
+                        if(actualBlock.moveable && actualBlock.created)
+                            actualBlock.Move(actualBlock.squares, key.Key, world , platform);
                     }
                         
                 }
                 admin.ConsolePosShow(Console.CursorLeft , Console.CursorTop);
+                if(menu.IfStarted())
+                if (!actualBlock.created)
+                    actualBlock.Create();
 
-                if (menu.IfStarted() && bigS.moveable)
-                    bigS.Gravity(bigS.squares , world , platform);
-                Thread.Sleep(300);
+                if (menu.IfStarted() && actualBlock.moveable && actualBlock.created)
+                    actualBlock.Gravity(actualBlock.squares , world , platform);
+                Thread.Sleep(100);
+
+                if (!actualBlock.moveable)
+                    actualBlock = game.RandomBlock();
             }
 
             

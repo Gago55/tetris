@@ -6,7 +6,7 @@ namespace Tetris
 {
     class LCorner : Blocks
     {
-        int x = 26;
+        int x = 27;
 
         public override void Create()
         {

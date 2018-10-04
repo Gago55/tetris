@@ -6,7 +6,7 @@ namespace Tetris
 {
     class RCorner : Blocks
     {
-        int x = 26;
+        int x = 27;
 
         public override void Create()
         {

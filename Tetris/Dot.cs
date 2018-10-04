@@ -28,10 +28,10 @@ namespace Tetris
             switch (dir)
             {
                 case Direction.LEFT:
-                    x = x - 1;
+                    x = x - 2;
                     break;
                 case Direction.RIGTH:
-                    x = x + 1;
+                    x = x + 2;
                     break;
                 case Direction.DOWN:
                     y = y + 1;

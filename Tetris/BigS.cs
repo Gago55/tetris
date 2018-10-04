@@ -6,7 +6,7 @@ namespace Tetris
 {
     class BigS : Blocks
     {
-        public int x = 28;
+        public int x = 29;
 
         public override void Create()
         {
