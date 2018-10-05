@@ -11,6 +11,9 @@ namespace Tetris
         public int y = 10;
         public bool created = false;
         public bool moveable = true;
+   //     public bool rotatable;
+      //  public int rotatationCount;
+        public int actualRotatationNumber = 1;
 
         //protected List<Dot> dots;
         public List<Square> squares;
@@ -123,6 +126,8 @@ namespace Tetris
                     moveable = false;
                 }
             }
+            else if (key == ConsoleKey.UpArrow)
+                Rotate(ref actualRotatationNumber , world , platform);
         }
 
         public bool IsHit(List<Square> squares, List<Dot> wall)
@@ -159,9 +164,13 @@ namespace Tetris
         {
 
         }
-        
+
+        public virtual void Rotate(ref int actual , World world, Platform platform)
+        {
+
+        }
 
         
-        
+
     }
 }
