@@ -10,13 +10,14 @@ namespace Tetris
         public List<Dot> downWall;
         public List<Dot> leftWall;
         public List<Dot> rightWall;
+        public List<Dot> upWall;
         public void Start()
         {
             
 
             Console.ForegroundColor = ConsoleColor.White;
 
-            Horizontal(15, 9 , 30, '═'); // alt + 205
+            upWall = HorizontalReturn(15, 9 , 30, '═'); // alt + 205
             downWall = HorizontalReturn(15, 40, 30, '═'); // alt + 205
             leftWall = VerticalReturn(14, 10, 30, '║'); // alt + 186
             rightWall = VerticalReturn(45, 10, 30, '║'); // alt + 186
@@ -28,6 +29,7 @@ namespace Tetris
             walls.Add(downWall);
             walls.Add(leftWall);
             walls.Add(rightWall);
+
         }
 
         public List<Dot> wallsDots()
@@ -40,10 +42,11 @@ namespace Tetris
                 walls.Add(d);
             foreach (Dot d in rightWall)
                 walls.Add(d);
+            foreach (Dot d in upWall)
+                walls.Add(d);
 
             return walls;
         }
             
-
     }
 }
