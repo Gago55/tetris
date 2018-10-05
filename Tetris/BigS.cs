@@ -21,10 +21,16 @@ namespace Tetris
             squares.Add(s3);
             squares.Add(s2);
             squares.Add(s4);
-            
+
             Draw(squares);
 
             created = true;
+
+        }
+
+        public override void Rotate(ref int actual, World world, Platform platform)
+        {
+            //:D
         }
     }
 }
