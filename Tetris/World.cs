@@ -7,7 +7,9 @@ namespace Tetris
     class World : Instruments
     {
         public List<List<Dot>> walls = new List<List<Dot>>();
-
+        public List<Dot> downWall;
+        public List<Dot> leftWall;
+        public List<Dot> rightWall;
         public void Start()
         {
             
@@ -15,9 +17,9 @@ namespace Tetris
             Console.ForegroundColor = ConsoleColor.White;
 
             Horizontal(15, 9 , 30, '═'); // alt + 205
-            List<Dot> downWall = HorizontalReturn(15, 40, 30, '═'); // alt + 205
-            List<Dot> leftWall = VerticalReturn(14, 10, 30, '║'); // alt + 186
-            List<Dot> rightWall = VerticalReturn(45, 10, 30, '║'); // alt + 186
+            downWall = HorizontalReturn(15, 40, 30, '═'); // alt + 205
+            leftWall = VerticalReturn(14, 10, 30, '║'); // alt + 186
+            rightWall = VerticalReturn(45, 10, 30, '║'); // alt + 186
             Dot(14,40,'╚');//alt + 200
             Dot(45,40,'╝');//alt + 188
             Dot(14, 9, '╔');//alt + 201
@@ -27,5 +29,21 @@ namespace Tetris
             walls.Add(leftWall);
             walls.Add(rightWall);
         }
+
+        public List<Dot> wallsDots()
+        {
+            List<Dot> walls = new List<Dot>();
+
+            foreach (Dot d in downWall)
+                walls.Add(d);
+            foreach (Dot d in leftWall)
+                walls.Add(d);
+            foreach (Dot d in rightWall)
+                walls.Add(d);
+
+            return walls;
+        }
+            
+
     }
 }
