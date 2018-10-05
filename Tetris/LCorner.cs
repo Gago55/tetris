@@ -8,6 +8,7 @@ namespace Tetris
     {
         int x = 27;
         bool recursion;
+
         public override void Create()
         {
             squares = new List<Square>();
@@ -87,6 +88,7 @@ namespace Tetris
 
             Draw(squares);
         }
+
         public void Rotation(ref int actual, int x, int y)
         {
             if (actual == 1)
