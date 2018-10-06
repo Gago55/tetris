@@ -19,7 +19,7 @@ namespace Tetris
 
             while (true)
             {
-
+                
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo key = Console.ReadKey();
@@ -36,16 +36,21 @@ namespace Tetris
                         
                 }
                 admin.ConsolePosShow(Console.CursorLeft , Console.CursorTop);
-                if(menu.IfStarted())
-                if (!actualBlock.created)
-                    actualBlock.Create();
+                if (menu.IfStarted())
+                {
+                    platform.FullPlatform();
+                    if (!actualBlock.created)
+                        actualBlock.Create();
+                }
 
                 if (menu.IfStarted() && actualBlock.moveable && actualBlock.created)
                     actualBlock.Gravity(actualBlock.squares , world , platform);
-                Thread.Sleep(100);
+               
 
                 if (!actualBlock.moveable)
                     actualBlock = game.RandomBlock();
+
+                Thread.Sleep(100);
             }
 
             
