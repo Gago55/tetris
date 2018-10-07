@@ -28,7 +28,7 @@ namespace Tetris
 
         public void Start(ConsoleKey key , World world )
         {
-            if (key == ConsoleKey.Enter)
+            if (key == ConsoleKey.Enter  && !started)
             {
                 Console.Clear();
                 world.Start();
