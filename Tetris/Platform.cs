@@ -42,7 +42,8 @@ namespace Tetris
             {
                 int y = fullY[0];
                 List<Dot> Removeable = new List<Dot>();
-                foreach(Dot dot in platform)
+                List<Dot> Moveable = new List<Dot>();
+                foreach (Dot dot in platform)
                 {
                     if (dot.y == y || dot.y==y-1)
                     {
@@ -57,13 +58,25 @@ namespace Tetris
                     if (dot.y < y-1)
                     {
                         dot.Clear();
-                        dot.y+=2;
-                        dot.Draw();
+                        Moveable.Add(dot);
                     }
                 }
+                MoveDown(Moveable, 2);
+                
+                foreach(Dot d in Moveable)
+                {
+                    d.Draw();
+                }
             }
+            
 
             
+        }
+
+        private void MoveDown(List<Dot> moveable, int a)
+        {
+            foreach (Dot d in moveable)
+                d.y += a;
         }
 
         private void Remove(List<Dot> removeable)
