@@ -37,7 +37,6 @@ namespace Tetris
                 }
             }
 
-
             if (fullY.Count == 1)
             {
                 int y = fullY[0];
@@ -102,8 +101,6 @@ namespace Tetris
                     }
                 }
             }
-
-
 
         }
 
