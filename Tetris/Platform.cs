@@ -68,7 +68,6 @@ namespace Tetris
                     d.Draw();
                 }
             }
-            
 
             
         }
