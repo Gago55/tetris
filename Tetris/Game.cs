@@ -4,8 +4,20 @@ using System.Text;
 
 namespace Tetris
 {
-    class Game
+    class Game : Instruments
     {
+        List<Dot> hitZone = new List<Dot>();
+
+        public Game()
+        {
+            for(int i = 25; i<= 34; i++)
+                for(int j = 10; j<=11; j++)
+                {
+                    Dot dot = new Dot(i, j, ' ');
+                    hitZone.Add(dot);
+                }
+        }
+
         public Blocks RandomBlock()
         {
             Array values = Enum.GetValues(typeof(Block));
@@ -40,6 +52,28 @@ namespace Tetris
             }
 
             return b;
+        }
+
+        public bool IfLose (Platform platform)
+        {
+            bool ifLose = false;
+
+            foreach (Dot d in platform.platform)
+            {
+                foreach (Dot hitZoneDot in hitZone)
+                {
+                    if (d.x == hitZoneDot.x && d.y == hitZoneDot.y)
+                        ifLose = true;
+                }
+            }
+
+            return ifLose;
+        }
+
+        public void Lose()
+        {
+            Console.Clear();
+            Text(20, 25, "YOU LOSER!!");
         }
     }
 }
