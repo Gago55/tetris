@@ -27,28 +27,30 @@ namespace Tetris
                     admin.ConsolePos(key.Key);
                     admin.ConsoleChangePos(key.Key , Console.CursorLeft , Console.CursorTop);
 
-                    if(menu.IfStarted())
+                    if(menu.IfStarted() && !game.IfLose(platform))
                     {
-
                         if(actualBlock.moveable && actualBlock.created)
                             actualBlock.Move(actualBlock.squares, key.Key, world , platform);
                     }
                         
                 }
                 admin.ConsolePosShow(Console.CursorLeft , Console.CursorTop);
-                if (menu.IfStarted())
-                {
+                if (menu.IfStarted() && !game.IfLose(platform))
+                { 
                     platform.FullPlatform();
                     if (!actualBlock.created)
                         actualBlock.Create();
                 }
 
-                if (menu.IfStarted() && actualBlock.moveable && actualBlock.created)
+                if (menu.IfStarted() && actualBlock.moveable && actualBlock.created && !game.IfLose(platform))
                     actualBlock.Gravity(actualBlock.squares , world , platform);
                
 
-                if (!actualBlock.moveable)
+                if (!actualBlock.moveable && !game.IfLose(platform))
                     actualBlock = game.RandomBlock();
+
+                if (game.IfLose(platform))
+                    game.Lose();
 
                 Thread.Sleep(100);
             }
