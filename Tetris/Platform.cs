@@ -68,8 +68,43 @@ namespace Tetris
                     d.Draw();
                 }
             }
+            else if (fullY.Count >= 1)
+            {
+                int count = fullY.Count;
+                for (int i=count-1;i >= 0; i--)
+                {
+                    int y = fullY[i];
+                    List<Dot> Removeable = new List<Dot>();
+                    List<Dot> Moveable = new List<Dot>();
+                    foreach (Dot dot in platform)
+                    {
+                        if (dot.y == y || dot.y == y - 1)
+                        {
+                            dot.Clear();
+                            Removeable.Add(dot);
+                        }
+                    }
+                    Remove(Removeable);
 
-            
+                    foreach (Dot dot in platform)
+                    {
+                        if (dot.y < y - 1)
+                        {
+                            dot.Clear();
+                            Moveable.Add(dot);
+                        }
+                    }
+                    MoveDown(Moveable, 2);
+
+                    foreach (Dot d in Moveable)
+                    {
+                        d.Draw();
+                    }
+                }
+            }
+
+
+
         }
 
         private void MoveDown(List<Dot> moveable, int a)
