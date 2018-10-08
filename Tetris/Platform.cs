@@ -115,5 +115,13 @@ namespace Tetris
             foreach (Dot d in removeable)
                 platform.Remove(d);
         }
+
+        public void emptyPlatform()
+        {
+            for (int i = platform.Count-1; i>=0;i--)
+            {
+                platform.RemoveAt(i);
+            }
+        }
     }
 }
