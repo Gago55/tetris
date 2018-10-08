@@ -11,6 +11,8 @@ namespace Tetris
 
         public override void Create()
         {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+
             squares = new List<Square>();
 
             Square s1 = new Square(x, y, sym);

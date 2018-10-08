@@ -72,6 +72,7 @@ namespace Tetris
         public void Lose()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.White;
             Text(26, 13, "YOU LOSE");
             Text(18, 25, "Press Enter to Play Again");
         }
