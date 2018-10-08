@@ -32,7 +32,10 @@ namespace Tetris
                         if(actualBlock.moveable && actualBlock.created)
                             actualBlock.Move(actualBlock.squares, key.Key, world , platform);
                     }
-                        
+
+                    if (game.IfLose(platform))
+                        game.PlayAgain(key.Key, world, platform);
+
                 }
                 admin.ConsolePosShow(Console.CursorLeft , Console.CursorTop);
                 if (menu.IfStarted() && !game.IfLose(platform))
