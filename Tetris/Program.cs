@@ -46,6 +46,7 @@ namespace Tetris
                 }
 
                 if (menu.IfStarted() && actualBlock.moveable && actualBlock.created && !game.IfLose(platform))
+                    if(actualBlock.gravityTime == 3)
                     actualBlock.Gravity(actualBlock.squares , world , platform);
                
 
@@ -55,6 +56,7 @@ namespace Tetris
                 if (game.IfLose(platform))
                     game.Lose();
 
+                actualBlock.AddGravityTime();
                 Thread.Sleep(100);
             }
 
