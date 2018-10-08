@@ -14,9 +14,10 @@ namespace Tetris
    //     public bool rotatable;
       //  public int rotatationCount;
         public int actualRotatationNumber = 1;
-
+        public int gravityTime = 0;
         //protected List<Dot> dots;
         public List<Square> squares;
+        
 
         public void Draw(List<Dot> dots)
         {
@@ -128,6 +129,14 @@ namespace Tetris
             }
             else if (key == ConsoleKey.UpArrow)
                 Rotate(ref actualRotatationNumber , world , platform);
+        }
+
+        public void AddGravityTime()
+        {
+            if (gravityTime < 3)
+                gravityTime++;
+            else
+                gravityTime = 0;
         }
 
         public bool IsHit(List<Square> squares, List<Dot> wall)
