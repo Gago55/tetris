@@ -39,6 +39,7 @@ namespace Tetris
 
             if (fullY.Count == 1)
             {
+                Console.ForegroundColor = ConsoleColor.White;
                 int y = fullY[0];
                 List<Dot> Removeable = new List<Dot>();
                 List<Dot> Moveable = new List<Dot>();
@@ -69,6 +70,7 @@ namespace Tetris
             }
             else if (fullY.Count >= 1)
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 int count = fullY.Count;
                 for (int i=count-1;i >= 0; i--)
                 {
