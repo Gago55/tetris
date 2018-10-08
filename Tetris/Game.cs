@@ -7,7 +7,7 @@ namespace Tetris
     class Game : Instruments
     {
         List<Dot> hitZone = new List<Dot>();
-
+        bool ifLose = false;
         public Game()
         {
             for(int i = 25; i<= 34; i++)
@@ -56,7 +56,6 @@ namespace Tetris
 
         public bool IfLose (Platform platform)
         {
-            bool ifLose = false;
 
             foreach (Dot d in platform.platform)
             {
@@ -73,7 +72,19 @@ namespace Tetris
         public void Lose()
         {
             Console.Clear();
-            Text(20, 25, "YOU LOSER!!");
+            Text(26, 13, "YOU LOSE");
+            Text(18, 25, "Press Enter to Play Again");
+        }
+
+        public void PlayAgain(ConsoleKey key,World world , Platform platform)
+        {
+            if (key == ConsoleKey.Enter)
+            {
+                Console.Clear();
+                world.Start();
+                platform.emptyPlatform();
+                ifLose = false;
+            }
         }
     }
 }
