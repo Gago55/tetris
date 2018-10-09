@@ -69,21 +69,23 @@ namespace Tetris
             return ifLose;
         }
 
-        public void Lose()
+        public void Lose(Player player)
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.White;
             Text(26, 13, "YOU LOSE");
+            Text(23, 20, "Your Score: " + player.score.ToString());
             Text(18, 25, "Press Enter to Play Again");
         }
 
-        public void PlayAgain(ConsoleKey key,World world , Platform platform)
+        public void PlayAgain(ConsoleKey key,World world , Platform platform , Player player)
         {
             if (key == ConsoleKey.Enter)
             {
                 Console.Clear();
                 world.Start();
                 platform.emptyPlatform();
+                player.score = 0;
                 ifLose = false;
             }
         }

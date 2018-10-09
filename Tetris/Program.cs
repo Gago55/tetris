@@ -14,6 +14,8 @@ namespace Tetris
             World world = new World();
             Platform platform = new Platform();
             Game game = new Game();
+            Player player = new Player();
+            UI ui = new UI();
 
             Blocks actualBlock = game.RandomBlock();
 
@@ -30,17 +32,19 @@ namespace Tetris
                     if(menu.IfStarted() && !game.IfLose(platform))
                     {
                         if(actualBlock.moveable && actualBlock.created)
-                            actualBlock.Move(actualBlock.squares, key.Key, world , platform);
+                            actualBlock.Move(actualBlock.squares, key.Key, world , platform , player);
                     }
 
                     if (game.IfLose(platform))
-                        game.PlayAgain(key.Key, world, platform);
+                        game.PlayAgain(key.Key, world, platform , player);
 
                 }
                 admin.ConsolePosShow(Console.CursorLeft , Console.CursorTop);
                 if (menu.IfStarted() && !game.IfLose(platform))
-                { 
-                    platform.FullPlatform();
+                {
+                    player.ChangePlayerLevel();
+                    ui.ShowPlayerStatus(player);
+                    platform.FullPlatform(player);
                     if (!actualBlock.created)
                         actualBlock.Create();
                 }
@@ -54,10 +58,10 @@ namespace Tetris
                     actualBlock = game.RandomBlock();
 
                 if (game.IfLose(platform))
-                    game.Lose();
+                    game.Lose(player);
 
                 actualBlock.AddGravityTime();
-                Thread.Sleep(100);
+                Thread.Sleep(150/player.speed);
             }
 
             

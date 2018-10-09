@@ -65,7 +65,7 @@ namespace Tetris
             }
         }
 
-        public void Move(List<Square> squares, ConsoleKey key, World world , Platform platform)
+        public void Move(List<Square> squares, ConsoleKey key, World world , Platform platform , Player player)
         {
             if (key == ConsoleKey.LeftArrow)
             {
@@ -126,14 +126,16 @@ namespace Tetris
                     platform.AddToPlatform(squares);
                     moveable = false;
                 }
+
+                player.AddScore(1);
             }
             else if (key == ConsoleKey.UpArrow)
                 Rotate(ref actualRotatationNumber, world, platform);
             else if (key == ConsoleKey.Spacebar)
-                SpaceTrick(world , platform);
+                SpaceTrick(world , platform , player);
         }
 
-        private void SpaceTrick(World world , Platform platform)
+        private void SpaceTrick(World world , Platform platform , Player player)
         {
             Clear(squares);
             foreach (Square s in squares)
@@ -142,7 +144,10 @@ namespace Tetris
             }
 
             if (!IsHit(squares, world.walls[0]) && !IsHit(squares, platform.platform))
-                SpaceTrick(world, platform);
+            {
+                player.AddScore(2);
+                SpaceTrick(world, platform, player);
+            }
             else
             {
                 foreach (Square s in squares)

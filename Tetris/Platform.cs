@@ -19,7 +19,7 @@ namespace Tetris
             }
         }
 
-        public void FullPlatform()
+        public void FullPlatform(Player player)
         {
             List<int> fullY = new List<int>();
             for (int i = 39; i >10; i-=2)
@@ -67,6 +67,8 @@ namespace Tetris
                 {
                     d.Draw();
                 }
+                
+                
             }
             else if (fullY.Count >= 1)
             {
@@ -104,6 +106,7 @@ namespace Tetris
                 }
             }
 
+            player.LinesControls(fullY.Count);
         }
 
         private void MoveDown(List<Dot> moveable, int a)
