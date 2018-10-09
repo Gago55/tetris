@@ -8,6 +8,7 @@ namespace Tetris
     {
         List<Dot> hitZone = new List<Dot>();
         bool ifLose = false;
+        bool alreadyLose = false;
         public Game()
         {
             for(int i = 25; i<= 34; i++)
@@ -71,11 +72,25 @@ namespace Tetris
 
         public void Lose(Player player)
         {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.White;
-            Text(26, 13, "YOU LOSE");
-            Text(23, 20, "Your Score: " + player.score.ToString());
-            Text(18, 25, "Press Enter to Play Again");
+            if (!alreadyLose)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
+                Horizontal(10, 2, 40, '=');
+                Horizontal(10, 3, 40, '=');
+                Horizontal(10, 47, 40, '=');
+                Horizontal(10, 48, 40, '=');
+                
+                
+                Text(26, 13, "YOU LOSE");
+                Text(23, 20, "Your Score: " + player.score.ToString());
+                Text(18, 40, "Press Enter to Play Again");
+
+                if (player.IfHighScore())
+                    Text(14, 25, "Congratulations New Highscore!!!");
+                alreadyLose = true;
+            }
         }
 
         public void PlayAgain(ConsoleKey key,World world , Platform platform , Player player)
@@ -87,6 +102,7 @@ namespace Tetris
                 platform.emptyPlatform();
                 player.score = 0;
                 ifLose = false;
+                alreadyLose = false;
             }
         }
     }

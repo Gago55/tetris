@@ -7,7 +7,7 @@ namespace Tetris
     class Menu : Instruments
     {
         bool started = false;
-        public Menu()
+        public Menu(Player player)
         {
             
 
@@ -23,6 +23,11 @@ namespace Tetris
             Horizontal(10, 48, 40, '=');
 
             Text(20, 25 , "Press Enter to Start");
+
+            if(!(player.higescore == "0"))
+            {
+                Text(20, 45, "Your Highscore: " + player.higescore);
+            }
 
         }
 

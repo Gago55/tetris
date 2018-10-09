@@ -8,13 +8,13 @@ namespace Tetris
     {
         static void Main(string[] args)
         {
+            Player player = new Player();
             Window window = new Window(60, 50);
-            Menu menu = new Menu();
+            Menu menu = new Menu(player);
             Admin admin = new Admin();
             World world = new World();
             Platform platform = new Platform();
             Game game = new Game();
-            Player player = new Player();
             UI ui = new UI();
 
             Blocks actualBlock = game.RandomBlock();
