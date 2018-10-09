@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.IO;
 
 namespace Tetris
 {
@@ -10,6 +10,13 @@ namespace Tetris
         public int score = 0;
         public int lines = 0;
         public int level = 1;
+
+        public string higescore;
+
+        public Player()
+        {
+            ReadHighScores();
+        }
 
         public void AddScore(int deltaScore)
         {
@@ -63,6 +70,39 @@ namespace Tetris
                 level = 7;
                 speed = 7;
             }
+        }
+
+        public void ReadHighScores()
+        {
+            StreamReader sr = new StreamReader(@"..\..\..\..\HighScores.txt");
+
+            higescore = sr.ReadLine();
+
+            sr.Close();
+        }
+
+        public void WriteHighScores()
+        {
+
+            StreamWriter sw = new StreamWriter(@"..\..\..\..\HighScores.txt");
+
+            sw.WriteLine(higescore);
+
+            sw.Close();
+        }
+        
+        public bool IfHighScore()
+        {
+
+            if (score > Convert.ToInt32(higescore))
+            {
+                higescore = score.ToString();
+                WriteHighScores();
+                return true;
+            }
+            else
+                return false;
+   
         }
     }
 }
