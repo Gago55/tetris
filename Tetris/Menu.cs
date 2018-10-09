@@ -17,7 +17,8 @@ namespace Tetris
            
 
             //Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Letters tetris = new Letters(6, 15, 'O');
+            Letters tetris = new Letters();
+            tetris.Tetris(6, 15, 'O');
 
             Horizontal(10, 47, 40, '=');
             Horizontal(10, 48, 40, '=');
