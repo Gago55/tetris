@@ -25,7 +25,7 @@ namespace Tetris
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo key = Console.ReadKey();
-                    menu.Start(key.Key , world);
+                    menu.Start(key.Key , world,ui);
                     admin.ConsolePos(key.Key);
                     admin.ConsoleChangePos(key.Key , Console.CursorLeft , Console.CursorTop);
 

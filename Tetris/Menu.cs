@@ -32,13 +32,14 @@ namespace Tetris
 
         }
 
-        public void Start(ConsoleKey key , World world )
+        public void Start(ConsoleKey key , World world ,UI ui)
         {
             if (key == ConsoleKey.Enter  && !started)
             {
                 Console.Clear();
                 world.Start();
-                started = true; 
+                started = true;
+                ui.Instruction();
             }
             
         }
