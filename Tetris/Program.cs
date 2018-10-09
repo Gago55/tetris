@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 
 namespace Tetris
@@ -25,9 +24,9 @@ namespace Tetris
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo key = Console.ReadKey();
-                    menu.Start(key.Key , world);
-                    admin.ConsolePos(key.Key);
-                    admin.ConsoleChangePos(key.Key , Console.CursorLeft , Console.CursorTop);
+                    menu.Start(key.Key , world,ui);
+                    //admin.ConsolePos(key.Key);
+                    //admin.ConsoleChangePos(key.Key , Console.CursorLeft , Console.CursorTop);
 
                     if(menu.IfStarted() && !game.IfLose(platform))
                     {
@@ -39,7 +38,7 @@ namespace Tetris
                         game.PlayAgain(key.Key, world, platform , player);
 
                 }
-                admin.ConsolePosShow(Console.CursorLeft , Console.CursorTop);
+                //admin.ConsolePosShow(Console.CursorLeft , Console.CursorTop);
                 if (menu.IfStarted() && !game.IfLose(platform))
                 {
                     player.ChangePlayerLevel();
@@ -63,10 +62,7 @@ namespace Tetris
                 actualBlock.AddGravityTime();
                 Thread.Sleep(150/player.speed);
             }
-
-            
-
-            
+  
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Tetris
 {
@@ -81,14 +80,16 @@ namespace Tetris
                 Horizontal(10, 3, 40, '=');
                 Horizontal(10, 47, 40, '=');
                 Horizontal(10, 48, 40, '=');
-                
-                
-                Text(26, 13, "YOU LOSE");
-                Text(23, 20, "Your Score: " + player.score.ToString());
+
+                Letters letters = new Letters();
+                    letters.You(17, 10, 'O');
+                    letters.Lose(13, 18, 'O');
+
+                Text(23, 35, "Your Score: " + player.score.ToString());
                 Text(18, 40, "Press Enter to Play Again");
 
                 if (player.IfHighScore())
-                    Text(14, 25, "Congratulations New Highscore!!!");
+                    Text(22, 32, "New Highscore!!!");
                 alreadyLose = true;
             }
         }

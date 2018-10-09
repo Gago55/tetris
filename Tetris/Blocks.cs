@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Tetris
 {
@@ -11,11 +10,8 @@ namespace Tetris
         public int y = 10;
         public bool created = false;
         public bool moveable = true;
-   //     public bool rotatable;
-      //  public int rotatationCount;
         public int actualRotatationNumber = 1;
         public int gravityTime = 0;
-        //protected List<Dot> dots;
         public List<Square> squares;
         
 
@@ -196,8 +192,6 @@ namespace Tetris
             return downers;
         }
 
-        
-
         public virtual void Create()
         {
 
@@ -207,8 +201,6 @@ namespace Tetris
         {
 
         }
-
-        
 
     }
 }

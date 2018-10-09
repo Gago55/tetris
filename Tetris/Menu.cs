@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Tetris
 {
@@ -17,7 +15,8 @@ namespace Tetris
            
 
             //Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Letters tetris = new Letters(6, 15, 'O');
+            Letters tetris = new Letters();
+            tetris.Tetris(6, 15, 'O');
 
             Horizontal(10, 47, 40, '=');
             Horizontal(10, 48, 40, '=');
@@ -31,13 +30,14 @@ namespace Tetris
 
         }
 
-        public void Start(ConsoleKey key , World world )
+        public void Start(ConsoleKey key , World world ,UI ui)
         {
             if (key == ConsoleKey.Enter  && !started)
             {
                 Console.Clear();
                 world.Start();
-                started = true; 
+                started = true;
+                ui.Instruction();
             }
             
         }
