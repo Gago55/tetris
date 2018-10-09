@@ -75,7 +75,7 @@ namespace Tetris
                     s.ChangePos(Direction.LEFT);
                 }
 
-                if (!IsHit(squares, world.walls[1]) && !IsHit(squares, platform .platform ))
+                if (!IsHit(squares, world.walls[1]) && !IsHit(squares, platform.platform))
                     Draw(squares);
                 else
                 {
@@ -95,7 +95,7 @@ namespace Tetris
                     s.ChangePos(Direction.RIGTH);
                 }
 
-                if (!IsHit(squares, world.walls[2]) && !IsHit(squares, platform.platform) )
+                if (!IsHit(squares, world.walls[2]) && !IsHit(squares, platform.platform))
                     Draw(squares);
                 else
                 {
@@ -128,7 +128,31 @@ namespace Tetris
                 }
             }
             else if (key == ConsoleKey.UpArrow)
-                Rotate(ref actualRotatationNumber , world , platform);
+                Rotate(ref actualRotatationNumber, world, platform);
+            else if (key == ConsoleKey.Spacebar)
+                SpaceTrick(world , platform);
+        }
+
+        private void SpaceTrick(World world , Platform platform)
+        {
+            Clear(squares);
+            foreach (Square s in squares)
+            {
+                s.ChangePos(Direction.DOWN);
+            }
+
+            if (!IsHit(squares, world.walls[0]) && !IsHit(squares, platform.platform))
+                SpaceTrick(world, platform);
+            else
+            {
+                foreach (Square s in squares)
+                {
+                    s.PosUp();
+                }
+                Draw(squares);
+                platform.AddToPlatform(squares);
+                moveable = false;
+            }
         }
 
         public void AddGravityTime()
