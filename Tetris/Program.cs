@@ -42,6 +42,7 @@ namespace Tetris
                 admin.ConsolePosShow(Console.CursorLeft , Console.CursorTop);
                 if (menu.IfStarted() && !game.IfLose(platform))
                 {
+                    player.ChangePlayerLevel();
                     ui.ShowPlayerStatus(player);
                     platform.FullPlatform(player);
                     if (!actualBlock.created)
