@@ -90,7 +90,7 @@ namespace Tetris
                 Text(18, 40, "Press Enter to Play Again");
 
                 if (player.IfHighScore())
-                    Text(23, 32, "New Highscore!!!");
+                    Text(22, 32, "New Highscore!!!");
                 alreadyLose = true;
             }
         }
